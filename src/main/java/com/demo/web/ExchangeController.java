@@ -2,6 +2,8 @@ package com.demo.web;
 
 import java.text.ParseException;
 import java.util.List;
+
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,11 +22,11 @@ public class ExchangeController {
 	private ExchangeService exchangeService;
 	
 	@GetMapping("/get-exchange-rate")
-	public boolean getExchangeRate() throws ParseException 
+	public ResponseEntity<String> getExchangeRate() throws ParseException 
 	{
 		boolean list = exchangeService.getExchangeRate();
 		
-		return list;
+		return new ResponseEntity<String>("Data imported", new HttpHeaders(), HttpStatus.OK);
 	    	
 	}
 	
